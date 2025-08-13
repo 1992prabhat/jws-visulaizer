@@ -1,157 +1,129 @@
-/* Reset and base */
-
-* {
-  box-sizing: border-box;
-}
-
-body, html, #root {
-  margin: 0;
-  padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  height: 100%;
-  background: linear-gradient(120deg, #f0f4f9 0%, #fff0e7 100%);
-  color: #333;
+body {
+  background: linear-gradient(135deg, #f8abb9 0%, #b2e1f1 100%);
+  min-height: 100vh;
 }
 
 .app-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 2.5rem 1rem;
-}
-
-.app-card {
   background: #fff;
-  border-radius: 1rem;
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0 0 40px rgba(73, 54, 116, 0.1);
-  padding: 2rem 2.5rem;
-  transition: box-shadow 0.3s ease;
+  max-width: 480px;
+  margin: 40px auto;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(163, 177, 198, 0.17);
+  padding: 30px 30px 22px 30px;
+  overflow: hidden; /* Prevents inner content from spilling out */
 }
-
-.app-card:hover {
-  box-shadow: 0 0 60px rgba(73, 54, 116, 0.25);
-}
-
-.app-header {
-  margin: 0 0 1.5rem;
-  font-weight: 800;
-  font-size: 2rem;
-  text-align: center;
-  color: #4b4da2;
-  letter-spacing: 0.02em;
-}
-
-.divider {
-  border: none;
-  border-bottom: 1px solid #ddd;
-  margin: 1.5rem 0;
-}
-
-.placeholder-text {
-  margin-top: 3rem;
-  text-align: center;
-  color: #999;
-  font-size: 1rem;
-}
-
-/* Image Input */
-
-.image-input {
-  border: 3px dashed #c1c7d0;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
-}
-
-.image-input.drag-active {
-  background-color: #e2e9fc;
-  border-color: #5a67d8;
-}
-
-.image-input-text {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #555;
-}
-
-.choose-text {
-  color: #4b4da2;
-  text-decoration: underline;
-  font-weight: 700;
-}
-
-.formats-text {
-  font-size: 0.85rem;
-  color: #aaa;
-  margin-top: 0.4rem;
-}
-
-/* Color Palette */
 
 .color-palette {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0 2rem;
+  gap: 14px;           /* Increase spacing between swatches */
+  margin-top: 24px;
+  margin-bottom: 0;
+  max-width: 100%;
+  padding: 12px 0;     /* Add padding above/below for breathing room */
+}
+
+.app-header {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #21407f;
+  letter-spacing: 0.5px;
+}
+
+.image-input {
+  border: 2px dashed #d1d5db;
+  border-radius: 16px;
+  padding: 28px 0 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #595959;
+  background: #fafbff;
+  transition: border-color 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.image-input.drag-active {
+  border-color: #62bcdf;
+  background: #e4f7fd;
+}
+
+.image-input-text {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #21407f;
+  letter-spacing: 0.3px;
+}
+
+.formats-text {
+  font-size: 0.95rem;
+  color: #999;
+}
+
+.color-palette {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 18px;
 }
 
 .color-swatch {
-  padding: 0.4rem 0.8rem;
-  border-radius: 1rem;
-  border: 2px solid transparent;
-  min-width: 80px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.875rem;
-  color: #222;
+  border: none;
+  width: 64px;         /* Increase width */
+  height: 64px;        /* Increase height */
+  border-radius: 14px; /* Slightly more rounded for friendlier look */
+  margin-bottom: 10px;
   cursor: pointer;
-  box-shadow: 0 3px 5px rgb(0 0 0 / 0.05);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-  user-select: none;
-}
-
-.color-swatch:hover {
-  transform: scale(1.05);
-  border-color: #a1a7f2;
+  box-shadow: 0 2px 12px rgba(140, 179, 197, 0.18);
+  outline: none;
+  font-weight: 500;
+  font-size: 1.07rem;  /* Make the label slightly bigger */
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;      /* Space for label below the color */
 }
 
 .color-swatch.selected {
-  border-color: #4b4da2;
-  box-shadow: 0 0 12px #4b4da2a0;
+  box-shadow: 0 0 0 5px #62bcdf, 0 2px 12px rgba(140, 179, 197, 0.18); /* More visible highlight */
 }
 
-/* Canvas */
+.color-swatch span {
+  margin-top: 7px;
+  font-size: 0.93rem;
+  color: #222;
+  font-weight: 400;
+}
 
-.canvas-wrapper {
+.visualizer-preview-card {
   display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(189, 194, 208, 0.17);
+  margin-top: 18px;
+  background: #f5f7fa;
+  padding: 18px;
 }
 
 .visualizer-canvas {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(184, 198, 219, 0.16);
   max-width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  box-shadow: 0 8px 15px rgb(0 0 0 / 0.12);
-  border: 1px solid #ddd;
-  background: #fff;
-  max-height: 60vh;
+  display: block;
+  margin: 0 auto;
 }
 
-@media (max-width: 650px) {
-  .app-card {
-    padding: 1.5rem 1.5rem;
-  }
-
-  .color-swatch {
-    min-width: 70px;
-    font-size: 0.8rem;
-  }
+.status-message {
+  font-size: 1.08rem;
+  color: #666;
+  margin-top: 1rem;
+  text-align: center;
+  font-style: italic;
 }

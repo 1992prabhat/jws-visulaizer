@@ -1,12 +1,32 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 
 const ImageInput = ({ setImage }) => {
   const inputRef = useRef(null);
   const [dragActive, setDragActive] = useState(false);
+  const [objectUrl, setObjectUrl] = useState(null);
+
+  const handleFile = (file) => {
+    if (file && (file instanceof Blob || file instanceof File)) {
+      // Revoke previous URL to free memory
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+      const newUrl = URL.createObjectURL(file);
+      setObjectUrl(newUrl);
+      setImage(file);
+    }
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
-    if (file) setImage(URL.createObjectURL(file));
+    handleFile(file);
+  };
+
+  const onDrop = (e) => {
+    e.preventDefault();
+    setDragActive(false);
+    const file = e.dataTransfer.files?.[0];
+    handleFile(file);
   };
 
   const onDragOver = (e) => {
@@ -17,13 +37,6 @@ const ImageInput = ({ setImage }) => {
   const onDragLeave = (e) => {
     e.preventDefault();
     setDragActive(false);
-  };
-
-  const onDrop = (e) => {
-    e.preventDefault();
-    setDragActive(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) setImage(URL.createObjectURL(file));
   };
 
   return (
@@ -40,7 +53,6 @@ const ImageInput = ({ setImage }) => {
       }}
       style={{ outline: "none" }}
     >
-      {/* Input with capture attribute to open camera on supported devices */}
       <input
         ref={inputRef}
         type="file"
