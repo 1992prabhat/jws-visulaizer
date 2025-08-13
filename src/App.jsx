@@ -34,6 +34,17 @@ const PALETTE = [
 function App() {
   const [image, setImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState(PALETTE[0].hex);
+  const [appliedColor, setAppliedColor] = useState(PALETTE[0].hex);
+
+  // Called when palette color is selected, but we don't apply immediately
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+
+  // Called when user clicks the image to apply the selected color
+  const handleCanvasClick = () => {
+    setAppliedColor(selectedColor);
+  };
 
   return (
     <div className="app-container">
@@ -46,9 +57,16 @@ function App() {
             <ColorPalette
               palette={PALETTE}
               selectedColor={selectedColor}
-              setSelectedColor={setSelectedColor}
+              setSelectedColor={handleColorSelect}
             />
-            <VisualizerCanvas image={image} color={selectedColor} />
+            <VisualizerCanvas
+              image={image}
+              color={appliedColor} // Use appliedColor to show paint
+              onClick={handleCanvasClick}
+            />
+            <p style={{ marginTop: "10px", color: "#666", fontStyle: "italic", textAlign: "center" }}>
+              Select a color from the palette then click on the image to apply.
+            </p>
           </>
         ) : (
           <div className="placeholder-text">
