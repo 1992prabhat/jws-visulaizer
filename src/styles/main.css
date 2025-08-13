@@ -1,0 +1,157 @@
+/* Reset and base */
+
+* {
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  background: linear-gradient(120deg, #f0f4f9 0%, #fff0e7 100%);
+  color: #333;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
+}
+
+.app-card {
+  background: #fff;
+  border-radius: 1rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 40px rgba(73, 54, 116, 0.1);
+  padding: 2rem 2.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.app-card:hover {
+  box-shadow: 0 0 60px rgba(73, 54, 116, 0.25);
+}
+
+.app-header {
+  margin: 0 0 1.5rem;
+  font-weight: 800;
+  font-size: 2rem;
+  text-align: center;
+  color: #4b4da2;
+  letter-spacing: 0.02em;
+}
+
+.divider {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  margin: 1.5rem 0;
+}
+
+.placeholder-text {
+  margin-top: 3rem;
+  text-align: center;
+  color: #999;
+  font-size: 1rem;
+}
+
+/* Image Input */
+
+.image-input {
+  border: 3px dashed #c1c7d0;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.image-input.drag-active {
+  background-color: #e2e9fc;
+  border-color: #5a67d8;
+}
+
+.image-input-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.choose-text {
+  color: #4b4da2;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.formats-text {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 0.4rem;
+}
+
+/* Color Palette */
+
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.color-swatch {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  min-width: 80px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #222;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  user-select: none;
+}
+
+.color-swatch:hover {
+  transform: scale(1.05);
+  border-color: #a1a7f2;
+}
+
+.color-swatch.selected {
+  border-color: #4b4da2;
+  box-shadow: 0 0 12px #4b4da2a0;
+}
+
+/* Canvas */
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.visualizer-canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 8px 15px rgb(0 0 0 / 0.12);
+  border: 1px solid #ddd;
+  background: #fff;
+  max-height: 60vh;
+}
+
+@media (max-width: 650px) {
+  .app-card {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .color-swatch {
+    min-width: 70px;
+    font-size: 0.8rem;
+  }
+}
